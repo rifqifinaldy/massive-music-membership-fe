@@ -21,7 +21,8 @@
       "@MME-hooks/*": ["hooks/*"],
       "@MME-layouts/*": ["layouts/*"],
       "@MME-config/*": ["config/*"],
-      "@MME-redux/*": ["redux/*"]
+      "@MME-redux/*": ["redux/*"],
+      "@MME-db/*": ["../../public/json-data/*"]
     },
     "plugins": [
       {

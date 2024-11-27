@@ -1,3 +1,4 @@
+import { REQUEST_HEADERS } from "@MME-interface/global.interface";
 import axios, {
   AxiosError,
   AxiosInstance,
@@ -8,7 +9,7 @@ import axios, {
 const AXIOS_INSTANCE = axios.create({
   baseURL: process.env["NEXT_PUBLIC_BASE_URL"],
   headers: {
-    "x-mme-key": process.env["NEXT_PUBLIC_API_KEY"],
+    [REQUEST_HEADERS.API_KEY]: process.env["NEXT_PUBLIC_API_KEY"],
   },
 });
 

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 0,
+    "profile_pic": "https://picsum.photos/id/0/200/300",
+    "first_name": "Ariana",
+    "last_name": "Grande",
+    "email": "ariana@mail.com",
+    "age": 37,
+    "gender": "female",
+    "isActive": false
+  },
+  {
+    "id": 1,
+    "profile_pic": "https://picsum.photos/id/1/200/300",
+    "first_name": "Elsa",
+    "last_name": "Frozen",
+    "email": "elsa@mail.com",
+    "age": 23,
+    "gender": "female",
+    "isActive": true
+  },
+  {
+    "id": 2,
+    "profile_pic": "https://picsum.photos/id/2/200/300",
+    "first_name": "Jimmy",
+    "last_name": "Page",
+    "email": "jimmy@mail.com",
+    "age": 28,
+    "gender": "male",
+    "isActive": true
+  },
+  {
+    "id": 3,
+    "profile_pic": "https://picsum.photos/id/3/200/300",
+    "first_name": "Cornellius",
+    "last_name": "de Hotman",
+    "email": "cornellius@mail.com",
+    "age": 58,
+    "gender": "male",
+    "isActive": true
+  },
+  {
+    "id": 4,
+    "profile_pic": "https://picsum.photos/id/4/200/300",
+    "first_name": "Flying",
+    "last_name": "Dutchman",
+    "email": "dutchman@mail.com",
+    "age": 62,
+    "gender": "male",
+    "isActive": false
+  }
+]

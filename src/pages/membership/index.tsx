@@ -1,7 +1,8 @@
 import Membership from "@MME-modules/membership";
+import { NextPage } from "next";
 import React from "react";
 
-const MembershipPages: React.FC = () => {
+const MembershipPages: NextPage = () => {
   return <Membership />;
 };
 
