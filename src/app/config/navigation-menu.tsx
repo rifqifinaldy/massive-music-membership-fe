@@ -1,5 +1,4 @@
-import { AiFillHome, AiOutlineHome, AiOutlineUser } from "react-icons/ai";
-import { COLORS } from "../../themes/variant";
+import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 
 export const NAVIGATION = {
   HOMEPAGE: "/",
