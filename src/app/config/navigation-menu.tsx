@@ -1,8 +1,9 @@
-import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
+import { AiFillCalendar, AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 
 export const NAVIGATION = {
   HOMEPAGE: "/",
   MEMBERSHIP: "/membership",
+  EVENT: "/event",
 };
 
 export const MENUS = [
@@ -17,5 +18,11 @@ export const MENUS = [
     name: "Membership",
     url: NAVIGATION.MEMBERSHIP,
     icon: <AiOutlineUser size="22px" />,
+  },
+  {
+    id: 3,
+    name: "Event Management",
+    url: NAVIGATION.EVENT,
+    icon: <AiFillCalendar size="22px" />,
   },
 ];
