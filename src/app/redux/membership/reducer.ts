@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { REQUEST_MEMBER_LIST } from "./action";
+import { IMembers } from "@MME-interface/member.interface";
 
 interface IState<T> {
   data?: T;
@@ -18,7 +19,7 @@ const commonState = {
 };
 
 export type IMembersState = {
-  membersList: IState<any[] | []>;
+  membersList: IState<IMembers[] | []>;
 };
 
 const initialState: IMembersState = {

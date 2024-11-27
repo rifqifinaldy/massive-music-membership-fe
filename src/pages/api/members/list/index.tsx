@@ -5,12 +5,13 @@ import {
   SUCCESS_MESSAGE,
 } from "@MME-interface/response.interface";
 import { REQUEST_HEADERS } from "@MME-interface/global.interface";
+import { IMembers } from "@MME-interface/member.interface";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const members: any[] | [] = MEMBERS as any[] | [];
+  const members: IMembers[] | [] = MEMBERS as IMembers[] | [];
 
   if (
     MEMBERS &&
