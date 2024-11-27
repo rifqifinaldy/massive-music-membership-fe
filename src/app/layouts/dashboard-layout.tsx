@@ -1,4 +1,6 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
+import Navbar from "@MME-components/navbar";
+import Sidebar from "@MME-components/sidebar";
 import React from "react";
 
 interface IProps {
@@ -7,10 +9,17 @@ interface IProps {
 
 const DashboardLayout: React.FC<IProps> = ({ children }) => {
   return (
-    <Flex>
-      <Text>Sidebar</Text>
-      {children}
-    </Flex>
+    <Box overflow="hidden" maxH="100vh">
+      <Flex>
+        <Sidebar />
+        <Box w="full">
+          <Navbar />
+          <Box px="20px" py="40px" h="100vh">
+            {children}
+          </Box>
+        </Box>
+      </Flex>
+    </Box>
   );
 };
 
