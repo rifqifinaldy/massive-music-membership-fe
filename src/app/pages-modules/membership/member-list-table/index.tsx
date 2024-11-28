@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Switch, Text } from "@chakra-ui/react";
 import MemberTypeBadge from "@MME-components/badge/member-type-badge";
 import BasicTable, { ITableColumns } from "@MME-components/table/basic-table";
 import useMembers from "@MME-hooks/api's/useMembers";
@@ -8,9 +8,15 @@ import { TMemberFormType } from "../member-form";
 
 interface IProps {
   openMemberForm: (type: TMemberFormType, data?: IMembers) => void;
+  openDeleteModal: (data: IMembers) => void;
+  openActivateModal: (data: IMembers) => void;
 }
 
-const MembershipListTable: React.FC<IProps> = ({ openMemberForm }) => {
+const MembershipListTable: React.FC<IProps> = ({
+  openMemberForm,
+  openDeleteModal,
+  openActivateModal,
+}) => {
   const { getMembersList, membersList } = useMembers();
 
   const { data, pending } = membersList;
@@ -74,26 +80,41 @@ const MembershipListTable: React.FC<IProps> = ({ openMemberForm }) => {
       },
     },
     {
-      key: "isActive",
-      title: "Status",
-      width: "100px",
-      render: (data: IMembers) => {
-        return (
-          <Text
-            fontWeight={700}
-            color={data?.isActive ? "green.500" : "yellow.500"}
-          >
-            {data?.isActive ? "Active" : "Inactive"}
-          </Text>
-        );
-      },
-    },
-    {
       key: "membership_type",
       title: "Member Type",
       width: "100px",
       render: (data: IMembers) => {
         return <MemberTypeBadge type={data?.member_type} />;
+      },
+    },
+    {
+      key: "isActive",
+      title: "Status",
+      width: "100px",
+      render: (data: IMembers) => {
+        return (
+          <Flex flexDir="column">
+            <Switch
+              isChecked={data?.isActive}
+              colorScheme="green"
+              size="lg"
+              onChange={() => openActivateModal(data)}
+            />
+            <Text
+              cursor="pointer"
+              fontWeight={700}
+              color={data?.isActive ? "green.500" : "neutral.100"}
+              _hover={{
+                textDecoration: "underline",
+                color: data?.isActive ? "green.600" : "neutral.100",
+              }}
+              display="flex"
+              alignItems="center"
+            >
+              {data?.isActive ? "Active" : "Inactive"}
+            </Text>
+          </Flex>
+        );
       },
     },
     {
@@ -105,14 +126,14 @@ const MembershipListTable: React.FC<IProps> = ({ openMemberForm }) => {
             <Button
               onClick={() => openMemberForm("edit", data)}
               size="sm"
-              colorScheme="primary"
+              colorScheme="green"
             >
-              View / Edit
+              Edit
             </Button>
             <Button
-              // onClick={() => openDeleteModal(data)}
+              onClick={() => openDeleteModal(data)}
               size="sm"
-              colorScheme="danger"
+              colorScheme="red"
             >
               Delete
             </Button>

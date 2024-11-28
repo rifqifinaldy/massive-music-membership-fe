@@ -43,3 +43,15 @@ export const REQUEST_MEMBER_EDIT = createAsyncThunk(
     }
   }
 );
+
+export const REQUEST_MEMBER_DELETE = createAsyncThunk(
+  "member/delete",
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await REQUEST.delete(API.MEMBERS.DELETE(id));
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

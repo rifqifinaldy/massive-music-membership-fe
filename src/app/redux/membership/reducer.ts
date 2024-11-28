@@ -2,6 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import {
   REQUEST_MEMBER_ADD,
+  REQUEST_MEMBER_DELETE,
   REQUEST_MEMBER_EDIT,
   REQUEST_MEMBER_LIST,
 } from "./action";
@@ -26,12 +27,14 @@ export type IMembersState = {
   membersList: IState<IMembers[] | []>;
   createMember: IState<undefined>;
   editMember: IState<undefined>;
+  deleteMember: IState<undefined>;
 };
 
 const initialState: IMembersState = {
   membersList: { ...commonState, data: [], total: 0 },
   createMember: { ...commonState, data: undefined },
   editMember: { ...commonState, data: undefined },
+  deleteMember: { ...commonState, data: undefined },
 };
 
 export const MEMBER_REDUCER = createReducer(initialState, (builder) => {
@@ -71,7 +74,6 @@ export const MEMBER_REDUCER = createReducer(initialState, (builder) => {
       state.createMember.pending = true;
     })
     // EDIT MEMBER;
-    // REQUEST EDIT USER
     .addCase(REQUEST_MEMBER_EDIT.pending, (state) => {
       state.editMember.error = null;
       state.editMember.pending = true;
@@ -92,5 +94,27 @@ export const MEMBER_REDUCER = createReducer(initialState, (builder) => {
       state.editMember.success = false;
       state.editMember.error = payload as AxiosError;
       state.editMember.pending = false;
+    })
+    // DELETE MEMBER
+    .addCase(REQUEST_MEMBER_DELETE.pending, (state) => {
+      state.deleteMember.error = null;
+      state.deleteMember.pending = true;
+    })
+    .addCase(REQUEST_MEMBER_DELETE.fulfilled, (state, { payload }) => {
+      const membersList = state.membersList.data || [];
+      const tmpUser = [...membersList];
+      const deleteIndex = membersList.findIndex(
+        (user) => user.id === Number(payload.data.id)
+      );
+      tmpUser.splice(deleteIndex, 1);
+      state.membersList.data = tmpUser;
+      state.deleteMember.success = true;
+      state.deleteMember.error = null;
+      state.deleteMember.pending = false;
+    })
+    .addCase(REQUEST_MEMBER_DELETE.rejected, (state, { payload }) => {
+      state.deleteMember.success = false;
+      state.deleteMember.error = payload as AxiosError;
+      state.deleteMember.pending = false;
     });
 });

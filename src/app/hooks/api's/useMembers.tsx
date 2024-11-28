@@ -4,6 +4,7 @@ import { IMembers } from "@MME-interface/member.interface";
 import {
   MEMBERS_SELECTOR_COLLECTION,
   REQUEST_MEMBER_ADD,
+  REQUEST_MEMBER_DELETE,
   REQUEST_MEMBER_EDIT,
   REQUEST_MEMBER_LIST,
 } from "@MME-redux/membership";
@@ -63,7 +64,25 @@ const useMembers = () => {
     [dispatch, handleError, handleSuccess, modal]
   );
 
-  return { ...state, getMembersList, createMembers, editMembers };
+  const deleteMember = useCallback(
+    (id: number) => {
+      dispatch(REQUEST_MEMBER_DELETE(id)).then((result) => {
+        if (result.meta.requestStatus === "fulfilled") {
+          modal.onClose();
+          handleSuccess("Member has been deleted");
+        } else if (result.meta.requestStatus === "rejected") {
+          modal.onClose();
+          handleError(
+            result.payload.response?.status,
+            result.payload.response?.data.message
+          );
+        }
+      });
+    },
+    [dispatch, handleError, handleSuccess, modal]
+  );
+
+  return { ...state, getMembersList, createMembers, editMembers, deleteMember };
 };
 
 export default useMembers;
