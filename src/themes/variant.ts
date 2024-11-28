@@ -14,6 +14,7 @@ export enum COLORS {
 
 export enum BORDER {
   DEFAULT = "1px solid var(--chakra-colors-neutral-0)",
+  LIGHT_BLUE = "1px solid var(--chakra-colors-primary-500)",
   RED = "1px solid var(--chakra-colors-red-500)",
   GREEN = "1px solid var(--chakra-colors-green-500)",
   THICK_DARK_RED = "3px solid var(--chakra-colors-red-400)",

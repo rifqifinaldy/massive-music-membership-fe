@@ -1,3 +1,10 @@
+export enum EMemberType {
+  REGULAR = "Regular",
+  PREMIUM = "Premium",
+}
+
+export type TMemberType = `${EMemberType}`;
+
 export interface IMembers {
   id: number;
   profile_pic: string;
@@ -7,4 +14,5 @@ export interface IMembers {
   age: number;
   gender: "male" | "female";
   isActive: boolean;
+  member_type: TMemberType;
 }
