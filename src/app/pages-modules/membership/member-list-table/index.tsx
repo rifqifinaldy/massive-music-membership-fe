@@ -3,7 +3,7 @@ import MemberTypeBadge from "@MME-components/badge/member-type-badge";
 import BasicTable, { ITableColumns } from "@MME-components/table/basic-table";
 import useMembers from "@MME-hooks/api's/useMembers";
 import { IMembers } from "@MME-interface/member.interface";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TMemberFormType } from "../member-form";
 
 interface IProps {
@@ -17,6 +17,8 @@ const MembershipListTable: React.FC<IProps> = ({
   openDeleteModal,
   openActivateModal,
 }) => {
+  const pageSize = 5;
+  const [currentPage, setCurrentPage] = useState(1);
   const { getMembersList, membersList } = useMembers();
 
   const { data, pending } = membersList;
@@ -32,9 +34,10 @@ const MembershipListTable: React.FC<IProps> = ({
       title: "No",
       width: "5%",
       render: (_, i) => {
+        const no = (currentPage - 1) * pageSize + (i as number) + 1;
         return (
           <Text fontSize="14px" fontWeight="500">
-            {(i as number) + 1}
+            {no}
           </Text>
         );
       },
@@ -149,6 +152,9 @@ const MembershipListTable: React.FC<IProps> = ({
       width="full"
       datas={data || []}
       columns={columns}
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
+      pageSize={pageSize}
     />
   );
 };
