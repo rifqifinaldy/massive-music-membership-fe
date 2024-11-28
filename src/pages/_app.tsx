@@ -5,6 +5,7 @@ import Head from "next/head";
 import theme from "../themes/themes";
 import { Provider } from "react-redux";
 import { store } from "@MME-redux/store";
+import RootProvider from "@MME-context/root.context";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -17,9 +18,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <ChakraProvider theme={theme}>
         <Provider store={store}>
-          <DashboardLayout>
-            <Component {...pageProps} />
-          </DashboardLayout>
+          <RootProvider>
+            <DashboardLayout>
+              <Component {...pageProps} />
+            </DashboardLayout>
+          </RootProvider>
         </Provider>
       </ChakraProvider>
     </>

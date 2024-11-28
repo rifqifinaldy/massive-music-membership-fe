@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import "@fontsource-variable/plus-jakarta-sans";
+import { BORDER } from "./variant";
 
 const colors = {
   primary: {
@@ -120,6 +121,14 @@ const theme = extendTheme({
       baseStyle: {
         fontWeight: 500,
         fontSize: "16px",
+      },
+    },
+    Modal: {
+      baseStyle: {
+        dialog: {
+          bg: colors["neutral"][500],
+          border: BORDER.DEFAULT,
+        },
       },
     },
   },

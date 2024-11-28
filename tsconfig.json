@@ -22,6 +22,7 @@
       "@MME-layouts/*": ["layouts/*"],
       "@MME-config/*": ["config/*"],
       "@MME-redux/*": ["redux/*"],
+      "@MME-context/*": ["context/*"],
       "@MME-db/*": ["../../public/json-data/*"]
     },
     "plugins": [

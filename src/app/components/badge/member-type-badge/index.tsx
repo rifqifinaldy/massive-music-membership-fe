@@ -4,11 +4,11 @@ import React, { useCallback } from "react";
 import { BORDER } from "../../../../themes/variant";
 
 interface IProps {
-  type: TMemberType;
+  type: TMemberType | null;
 }
 
 const MemberTypeBadge: React.FC<IProps> = ({ type }) => {
-  const renderBadgeProperty = useCallback((type: TMemberType) => {
+  const renderBadgeProperty = useCallback((type: TMemberType | null) => {
     let color, bg, border;
     switch (type) {
       case EMemberType.REGULAR:
@@ -19,6 +19,11 @@ const MemberTypeBadge: React.FC<IProps> = ({ type }) => {
       case EMemberType.PREMIUM:
         color = "neutral.0";
         bg = "primary.500";
+        border = BORDER.DEFAULT;
+        break;
+      default:
+        color = "red.500";
+        bg = "red.100";
         border = BORDER.DEFAULT;
         break;
     }
