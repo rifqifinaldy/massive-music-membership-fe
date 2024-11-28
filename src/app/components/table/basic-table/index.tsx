@@ -157,7 +157,7 @@ const BasicTable: React.FC<BasicTableProps> = ({
         <Flex justifyContent="flex-start" mt="20px">
           <HStack spacing={4}>
             <Button
-              size="sm"
+              size="xs"
               variant="outline"
               colorScheme="green"
               onClick={() => goToPage(1)}
@@ -166,7 +166,7 @@ const BasicTable: React.FC<BasicTableProps> = ({
               First
             </Button>
             <Button
-              size="sm"
+              size="xs"
               variant="outline"
               colorScheme="green"
               onClick={() => goToPage(currentPage - 1)}
@@ -174,11 +174,11 @@ const BasicTable: React.FC<BasicTableProps> = ({
             >
               Prev
             </Button>
-            <Text fontSize="12px">
+            <Text fontSize={{ base: "8px", md: "12px" }}>
               Page {currentPage} of {totalPages}
             </Text>
             <Button
-              size="sm"
+              size="xs"
               variant="outline"
               colorScheme="green"
               onClick={() => goToPage(currentPage + 1)}
@@ -187,7 +187,7 @@ const BasicTable: React.FC<BasicTableProps> = ({
               Next
             </Button>
             <Button
-              size="sm"
+              size="xs"
               variant="outline"
               colorScheme="green"
               onClick={() => goToPage(totalPages)}
