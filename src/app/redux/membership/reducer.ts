@@ -59,7 +59,7 @@ export const MEMBER_REDUCER = createReducer(initialState, (builder) => {
     // CREATE NEW MEMBER
     .addCase(REQUEST_MEMBER_ADD.fulfilled, (state, { payload }) => {
       const membersListData = state.membersList.data || [];
-      state.membersList.data = [...membersListData, payload.data];
+      state.membersList.data = [payload.data, ...membersListData];
       state.createMember.success = true;
       state.createMember.error = null;
       state.createMember.pending = false;

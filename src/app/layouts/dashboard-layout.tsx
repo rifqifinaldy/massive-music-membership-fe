@@ -12,9 +12,9 @@ const DashboardLayout: React.FC<IProps> = ({ children }) => {
     <Box overflow="hidden" maxH="100vh">
       <Flex>
         <Sidebar />
-        <Box w="full">
+        <Box w="full" h="100vh" overflow="auto">
           <Navbar />
-          <Box px="20px" py="40px" h="100vh">
+          <Box px="20px" py="40px">
             {children}
           </Box>
         </Box>

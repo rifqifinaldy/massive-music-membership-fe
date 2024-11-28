@@ -7,7 +7,7 @@ const ComingSoon: React.FC = () => {
   return (
     <Flex
       flexDir="column"
-      h="80%"
+      h="50vh"
       w="full"
       alignItems="center"
       justifyContent="center"
