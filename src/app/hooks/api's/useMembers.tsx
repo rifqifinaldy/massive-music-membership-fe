@@ -47,7 +47,6 @@ const useMembers = () => {
 
   const editMembers = useCallback(
     (payload: IMembers) => {
-      console.log("PAYLOAD", payload);
       dispatch(REQUEST_MEMBER_EDIT(payload)).then((result) => {
         if (result.meta.requestStatus === "fulfilled") {
           modal.onClose();

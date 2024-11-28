@@ -12,7 +12,6 @@ const Membership: React.FC = () => {
 
   const openMemberForm = useCallback(
     (type: TMemberFormType, data?: IMembers) => {
-      console.log("DATA form", data);
       modal.onOpen();
       modal.setContent({
         header: type === "create" ? "Create New User" : "Edit User",
