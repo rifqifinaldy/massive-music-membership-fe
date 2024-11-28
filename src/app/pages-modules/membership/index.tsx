@@ -8,10 +8,11 @@ import { IMembers } from "@MME-interface/member.interface";
 
 const Membership: React.FC = () => {
   const { modal } = useContext(RootContext) as IRootContext;
-  const { createMembers } = useMembers();
+  const { createMembers, editMembers } = useMembers();
 
   const openMemberForm = useCallback(
     (type: TMemberFormType, data?: IMembers) => {
+      console.log("DATA form", data);
       modal.onOpen();
       modal.setContent({
         header: type === "create" ? "Create New User" : "Edit User",
@@ -21,13 +22,13 @@ const Membership: React.FC = () => {
         body: (
           <MemberForm
             type={type}
-            action={type === "create" ? createMembers : () => console.log("S")}
+            action={type === "create" ? createMembers : editMembers}
             data={data}
           />
         ),
       });
     },
-    [createMembers, modal]
+    [createMembers, editMembers, modal]
   );
 
   return (
@@ -46,7 +47,7 @@ const Membership: React.FC = () => {
           Create new Member
         </Button>
       </Flex>
-      <MembershipListTable />
+      <MembershipListTable openMemberForm={openMemberForm} />
     </Flex>
   );
 };

@@ -1,11 +1,16 @@
-import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
+import { Avatar, Box, Button, Flex, Text } from "@chakra-ui/react";
 import MemberTypeBadge from "@MME-components/badge/member-type-badge";
 import BasicTable, { ITableColumns } from "@MME-components/table/basic-table";
 import useMembers from "@MME-hooks/api's/useMembers";
 import { IMembers } from "@MME-interface/member.interface";
 import React, { useEffect } from "react";
+import { TMemberFormType } from "../member-form";
 
-const MembershipListTable: React.FC = () => {
+interface IProps {
+  openMemberForm: (type: TMemberFormType, data?: IMembers) => void;
+}
+
+const MembershipListTable: React.FC<IProps> = ({ openMemberForm }) => {
   const { getMembersList, membersList } = useMembers();
 
   const { data, pending } = membersList;
@@ -22,7 +27,7 @@ const MembershipListTable: React.FC = () => {
       width: "5%",
       render: (_, i) => {
         return (
-          <Text fontSize="12px" fontWeight="500">
+          <Text fontSize="14px" fontWeight="500">
             {(i as number) + 1}
           </Text>
         );
@@ -92,11 +97,27 @@ const MembershipListTable: React.FC = () => {
       },
     },
     {
-      key: "id",
-      title: "Action",
-      width: "100px",
-      render: () => {
-        return <Text>-</Text>;
+      key: "action",
+      title: "action",
+      render: (data: IMembers) => {
+        return (
+          <Flex gap="10px">
+            <Button
+              onClick={() => openMemberForm("edit", data)}
+              size="sm"
+              colorScheme="primary"
+            >
+              View / Edit
+            </Button>
+            <Button
+              // onClick={() => openDeleteModal(data)}
+              size="sm"
+              colorScheme="danger"
+            >
+              Delete
+            </Button>
+          </Flex>
+        );
       },
     },
   ];

@@ -36,8 +36,8 @@ const MemberForm: React.FC<IProps> = ({ type, action, data }) => {
       gender: data?.gender || "",
       age: data?.age || null,
       profile_pic: data?.profile_pic || null,
-      isActive: false,
-      member_type: null,
+      isActive: data?.isActive || false,
+      member_type: data?.member_type || null,
     },
   });
 

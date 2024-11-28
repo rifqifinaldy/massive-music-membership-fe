@@ -28,3 +28,18 @@ export const REQUEST_MEMBER_ADD = createAsyncThunk(
     }
   }
 );
+
+export const REQUEST_MEMBER_EDIT = createAsyncThunk(
+  "member/edit",
+  async (payload: IMembers, { rejectWithValue }) => {
+    try {
+      const response = await REQUEST.put(
+        API.MEMBERS.UPDATE(payload.id),
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
