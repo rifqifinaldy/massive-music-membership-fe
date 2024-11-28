@@ -3,7 +3,6 @@ import {
   Flex,
   Heading,
   Text,
-  IconButton,
   Drawer,
   DrawerContent,
   DrawerOverlay,
@@ -87,18 +86,25 @@ const Sidebar: React.FC = () => {
 
       {/* Mobile/Tablet Sidebar */}
       <Box display={{ base: "block", md: "none" }}>
-        <IconButton
-          icon={<FiMenu />}
-          aria-label="Open menu"
-          onClick={onOpen}
+        <Flex
+          bottom="20px"
+          right="32px"
           position="fixed"
-          top="20px"
-          left="20px"
-          bg="neutral.900"
-          color="green.0"
-          fontSize="32px"
-          _hover={{ bg: "neutral.700" }}
-        />
+          w="32px"
+          h="32px"
+          rounded="full"
+          bg="green.500"
+          alignItems="center"
+          justifyContent="center"
+          zIndex={999}
+        >
+          <FiMenu
+            size="20px"
+            color="green.0"
+            aria-label="Open menu"
+            onClick={onOpen}
+          />
+        </Flex>
         <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
           <DrawerOverlay />
           <DrawerContent bg="neutral.900">

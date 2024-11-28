@@ -19,7 +19,7 @@ const DashboardModuleCard: React.FC<IProps> = ({
 }) => {
   return (
     <Flex
-      w={{ base: "400px", xl: "480px" }}
+      w={{ base: "full", xl: "480px" }}
       h="380px"
       rounded={RADIUS.SM}
       border={BORDER.GREEN}

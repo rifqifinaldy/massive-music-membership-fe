@@ -115,7 +115,12 @@ const Membership: React.FC = () => {
 
   return (
     <Flex flexDir="column" gap="20px" w="full">
-      <Flex justifyContent="space-between" alignItems="center">
+      <Flex
+        flexDir={{ base: "column", sm: "row" }}
+        justifyContent="space-between"
+        alignItems={{ base: "flex-start", sm: "center" }}
+        gap="20px"
+      >
         <Box>
           <Heading>Membership</Heading>
           <Text color="green.200">Add / Manage Membership</Text>
