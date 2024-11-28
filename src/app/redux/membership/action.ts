@@ -28,3 +28,30 @@ export const REQUEST_MEMBER_ADD = createAsyncThunk(
     }
   }
 );
+
+export const REQUEST_MEMBER_EDIT = createAsyncThunk(
+  "member/edit",
+  async (payload: IMembers, { rejectWithValue }) => {
+    try {
+      const response = await REQUEST.put(
+        API.MEMBERS.UPDATE(payload.id),
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const REQUEST_MEMBER_DELETE = createAsyncThunk(
+  "member/delete",
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await REQUEST.delete(API.MEMBERS.DELETE(id));
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

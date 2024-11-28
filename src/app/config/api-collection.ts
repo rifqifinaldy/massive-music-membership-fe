@@ -2,6 +2,7 @@ export const API = {
   MEMBERS: {
     LIST: "/api/members/list",
     CREATE: "/api/members/create",
-    UPDATE: () => "/api/members/update",
+    UPDATE: (id: number) => `/api/members/update/${id}`,
+    DELETE: (id: number) => `/api/members/delete/${id}`,
   },
 };
