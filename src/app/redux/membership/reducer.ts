@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-import { REQUEST_MEMBER_LIST } from "./action";
+import { REQUEST_MEMBER_ADD, REQUEST_MEMBER_LIST } from "./action";
 import { IMembers } from "@MME-interface/member.interface";
 
 interface IState<T> {
@@ -20,10 +20,12 @@ const commonState = {
 
 export type IMembersState = {
   membersList: IState<IMembers[] | []>;
+  createMember: IState<undefined>;
 };
 
 const initialState: IMembersState = {
   membersList: { ...commonState, data: [], total: 0 },
+  createMember: { ...commonState, data: undefined },
 };
 
 export const MEMBER_REDUCER = createReducer(initialState, (builder) => {
@@ -44,5 +46,22 @@ export const MEMBER_REDUCER = createReducer(initialState, (builder) => {
       state.membersList.success = false;
       state.membersList.error = payload as AxiosError;
       state.membersList.pending = false;
+    })
+    .addCase(REQUEST_MEMBER_ADD.fulfilled, (state, { payload }) => {
+      const membersListData = state.membersList.data || [];
+      state.membersList.data = [...membersListData, payload.data];
+      state.createMember.success = true;
+      state.createMember.error = null;
+      state.createMember.pending = false;
+    })
+    .addCase(REQUEST_MEMBER_ADD.rejected, (state, { payload }) => {
+      state.createMember.success = false;
+      state.createMember.error = payload as AxiosError;
+      state.createMember.pending = false;
+    })
+    // REQUEST DELETE USER
+    .addCase(REQUEST_MEMBER_ADD.pending, (state) => {
+      state.createMember.error = null;
+      state.createMember.pending = true;
     });
 });

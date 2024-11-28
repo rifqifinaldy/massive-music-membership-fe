@@ -1,15 +1,19 @@
+import { IRootContext, RootContext } from "@MME-context/root.context";
 import useResponse from "@MME-hooks/helper/useResponse";
+import { IMembers } from "@MME-interface/member.interface";
 import {
   MEMBERS_SELECTOR_COLLECTION,
+  REQUEST_MEMBER_ADD,
   REQUEST_MEMBER_LIST,
 } from "@MME-redux/membership";
 import { useAppDispatch, useAppSelector } from "@MME-redux/useRedux";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 
 const useMembers = () => {
+  const { modal } = useContext(RootContext) as IRootContext;
   const dispatch = useAppDispatch();
   const state = useAppSelector(MEMBERS_SELECTOR_COLLECTION);
-  const { handleError } = useResponse();
+  const { handleError, handleSuccess } = useResponse();
 
   const getMembersList = useCallback(() => {
     dispatch(REQUEST_MEMBER_LIST()).then((result) => {
@@ -22,7 +26,25 @@ const useMembers = () => {
     });
   }, [dispatch, handleError]);
 
-  return { ...state, getMembersList };
+  const createMembers = useCallback(
+    (payload: IMembers) => {
+      dispatch(REQUEST_MEMBER_ADD(payload)).then((result) => {
+        if (result.meta.requestStatus === "fulfilled") {
+          modal.onClose();
+          handleSuccess("New member has been added");
+        } else if (result.meta.requestStatus === "rejected") {
+          modal.onClose();
+          handleError(
+            result.payload.response?.status,
+            result.payload.response?.data.message
+          );
+        }
+      });
+    },
+    [dispatch, handleError, handleSuccess, modal]
+  );
+
+  return { ...state, getMembersList, createMembers };
 };
 
 export default useMembers;

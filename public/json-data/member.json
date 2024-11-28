@@ -7,7 +7,8 @@
     "email": "ariana@mail.com",
     "age": 37,
     "gender": "female",
-    "isActive": false
+    "isActive": false,
+    "member_type": "Premium"
   },
   {
     "id": 1,
@@ -17,7 +18,8 @@
     "email": "elsa@mail.com",
     "age": 23,
     "gender": "female",
-    "isActive": true
+    "isActive": true,
+    "member_type": "Regular"
   },
   {
     "id": 2,
@@ -27,7 +29,8 @@
     "email": "jimmy@mail.com",
     "age": 28,
     "gender": "male",
-    "isActive": true
+    "isActive": true,
+    "member_type": "Premium"
   },
   {
     "id": 3,
@@ -37,7 +40,8 @@
     "email": "cornellius@mail.com",
     "age": 58,
     "gender": "male",
-    "isActive": true
+    "isActive": true,
+    "member_type": "Regular"
   },
   {
     "id": 4,
@@ -47,6 +51,7 @@
     "email": "dutchman@mail.com",
     "age": 62,
     "gender": "male",
-    "isActive": false
+    "isActive": false,
+    "member_type": "Regular"
   }
 ]
