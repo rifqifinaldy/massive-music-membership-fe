@@ -1,6 +1,6 @@
 ## Massive Music - Membership FE
 
-A simple member Management application to `Create`, `Read`, `Update`, `Delete` bootstrapped with Next.js 15 application with a range of technologies and tools to enhance development and testing. deployed at COMING SOON
+A simple member Management application to `Create`, `Read`, `Update`, `Delete` bootstrapped with Next.js 15 application with a range of technologies and tools to enhance development and testing. deployed at [[rifqif-massive-music.vercel.app/](https://massive-music-membership-fe.vercel.app/)]
 
 Installation
 To get started with this project locally, follow these steps:
